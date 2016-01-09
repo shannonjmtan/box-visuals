@@ -27,24 +27,51 @@ router.get('/code', function(req, res, next) {
       console.log(response);
       access_token = response.body.access_token;
       refresh_token = response.body.refresh_token;
+      res.redirect('/box/root');
     });
-
-    res.render('index');
 });
 
 /* GET Box Folders */
 router.get('/root', function(req, res, next) {
+    res.render('box');
+});
 
+router.get('/rootfolders', function(req, res, next) {
   var folder_items;
   unirest.get("https://api.box.com/2.0/folders/0/items")
     .headers({
       "Authorization": "Bearer " + access_token
     }).end(function(response) {
-      console.log(response.body);
       folder_items = response.body;
-      res.render('box', { view: JSON.stringify(folder_items) } );
+      folder_items = changeEntriesToChildren(folder_items);
+      console.log(folder_items);
+      res.send(folder_items);
+  });
+});
+
+router.get('/folder_items', function(req, res, next) {
+  var folder_items;
+  var url = "https://api.box.com/2.0/folders/"+req.body.folder_id+"/items";
+
+  unirest.get(url)
+    .headers({
+      "Authorization": "Bearer " + access_token
+    }).end(function(response) {
+      folder_items = response.body;
     });
 
 });
+
+function changeEntriesToChildren(folder_items) {
+  folder_items.children = folder_items.entries;
+  delete folder_items.entries;
+  delete folder_items.offset;
+  delete folder_items.limit;
+  delete folder_items.order;
+  folder_items.name = "All Files";
+  folder_items.id = "0";
+
+  return folder_items;
+}
 
 module.exports = router;
