@@ -1,6 +1,7 @@
 // Get JSON data
-var treeJSON = d3.json('/box/rootfolders', function(error, treeData) {
+var treeJSON = d3.json('../box.json', function(error, treeData) {
 
+      entire_tree = treeData;
 
       // Calculate total nodes, max label length
       var totalNodes = 0;
@@ -331,7 +332,11 @@ var treeJSON = d3.json('/box/rootfolders', function(error, treeData) {
 
       function click(d) {
           if (d3.event.defaultPrevented) return; // click suppressed
-          d = toggleChildren(d);
+          d3.json('folder_items', function(error, data) {
+            d.children = []
+            d.children = data;
+          })
+          console.log(d);
           update(d);
           centerNode(d);
       }
