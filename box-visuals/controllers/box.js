@@ -19,7 +19,6 @@ var tokenRef = boxRef.child(client_id);
 var access_token;
 var stream_position = 0;
 
-
 var Box = function() {};
 
 Box.prototype.client_id = function() {
@@ -74,7 +73,7 @@ Box.prototype.root = function() {
 }
 
 Box.prototype.sendUserEmailUponProvisioning = function() {
-    setInterval(newUserEventCall, 1000);
+    var emailProcessId = setInterval(newUserEventCall, 1000);
 }
 
 var newUserEventCall = function() {
