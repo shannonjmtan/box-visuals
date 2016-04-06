@@ -47,7 +47,7 @@ router.get('/folder_items', function(req, res, next) {
 
 router.get('/sendUserEmailUponProvisioning', function(req, res, next) {
     box.sendUserEmailUponProvisioning();
-    res.send("boom");
+    res.send("hello");
 });
 
 router.get('/boxvisuals', function(req, res, next) {

@@ -96,15 +96,15 @@ var newUserEventCall = function() {
 
 var sendUserEmail = function(userName, userEmail) {
     // create reusable transporter object using the default SMTP transport
-    var transporter = nodemailer.createTransport('smtps://shannon.tan1994%40gmail.com:jtqcrasnsdljasgf@smtp.gmail.com');
+    var transporter = nodemailer.createTransport('XXXXXX');
 
     // setup e-mail data with unicode symbols
     var mailOptions = {
         from: userName + '<' + userEmail + '>', // sender address
         to: 'shannontan@box.com', // list of receivers
-        subject: 'WELCOME TO BOX BITCH', // Subject line
-        text: 'WELCOME TO BOX BITCH', // plaintext body
-        html: '<b>WELCOME TO BOX BITCH X 2</b>' // html body
+        subject: 'WELCOME TO BOX ', // Subject line
+        text: 'WELCOME TO BOX', // plaintext body
+        html: '<b>WELCOME TO BOX X 2</b>' // html body
     };
 
     // send mail with defined transport object
