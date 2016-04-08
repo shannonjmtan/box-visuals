@@ -1,5 +1,5 @@
 // Get JSON data
-var treeJSON = d3.json('../box.json', function(error, treeData) {
+var treeJSON = d3.json('root', function(error, treeData) {
 
       entire_tree = treeData;
 
